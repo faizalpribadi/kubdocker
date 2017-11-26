@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: auth-service
+  name: auth-service-controller
+spec:
+  replicas: 2
+  selector:
+    name: auth-service
+  template:
+    metadata:
+      labels:
+        name: auth-service
+    spec:
+      containers:
+      - image: auth-service:v1
+        imagePullPolicy: IfNotPresent
+        name: auth-service
+        ports:
+        - containerPort: 4000
+          name: auth-service
